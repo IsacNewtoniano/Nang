@@ -312,10 +312,3 @@ nomenclatures:
   | [def](#140-init-identifier) AND [set](#013-alphabet) OR [set](#1000-underline-symbol)
   # 1.4.2 Identifier Error
   → [def](#14-identifier) Is Not [def](#132-special-keys-set)
-
-x, y, z
-
-x, y
-x, z
-
-y, z
