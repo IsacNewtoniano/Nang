@@ -404,4 +404,3 @@ nomenclatures:
 
   # 1.4.2 Identifier Error
   → [def](#14-identifier) Is Not [def](#132-special-keys-set)
-  
