@@ -30,6 +30,7 @@ nomenclatures:
   [char] = any character
   [error] = determine the type of error
   [time] = time of Execution/Check/Solve
+  [warning] = a specify Warning for the use
 
 # Readability Rules
   Rules for clear code
@@ -41,10 +42,14 @@ nomenclatures:
   Rules for Sintatic Rules analysis
 # Semantic Rules
   Rules for Semantic Rules analysis
+
 # Real Time
   Execution/Check/Solve in Real Time
 # Comp Time
   Execution/Check/Solve in Compilation Time
+
+# Memory
+  Memory can increase or decrease.
 
 
 # 0.0 UTF Decoder & Encoder
@@ -143,13 +148,10 @@ nomenclatures:
   | the symbol is [!=]
     different value operator
 
-  # 1.0.3.6 bang sign
-  | the symbol is [!]
-
-  # 1.0.3.7 close angle bracket
+  # 1.0.3.6 close angle bracket
   | the symbol is [>]
 
-  # 1.0.3.8 close angle bracket AND equals sign
+  # 1.0.3.7 close angle bracket AND equals sign
   | the symbol is [>=]
 
 
@@ -249,7 +251,7 @@ nomenclatures:
 
   # 1.1.4.1 clear decimal numbers definition
   | [set](#111-decimal-digit-set)
-  | AND [symbol](#101-underline) AND
+  | AND [symbol](#1000-underline-symbol) AND
   | [set](#111-decimal-digit-set)
   → do it: 8_25
   → don't: _8_25
@@ -269,10 +271,10 @@ nomenclatures:
   | [set](#112-hexadecimal-digit-set)
   | AND [symbol](#1012-double-quot-symbol) AND
   | [set](#112-hexadecimal-digit-set)
-  → do it: 4a_f
-  → don't: _4a_f
-  → don't: 4a__f
-  → don't: 4a_f_
+  → do it: 4a"f
+  → don't: "4a"f
+  → don't: 4a""f
+  → don't: 4a"f"
    → [error](#lexical-rules)
    → [time](#comp-time)
 
@@ -294,16 +296,18 @@ nomenclatures:
    → [time](#comp-time)
 
 # 1.1.7 Decimal Number definition
+  It is a floating-point number;
+  [.] is not a member access operator.
 
   # 1.1.7.0 Decimal Form
-  | [def](#1160-integers-form)
+  | [def](#1140-decimal-numbers-definition)
   | AND [symbol](#1001-dot-symbol) AND
-  | [def](#1160-integers-form)
+  | [def](#1140-decimal-numbers-definition)
 
   # 1.1.7.1 Positive Decimal
   | [def](#1170-decimal-form)
 
-  # 1.1.7.1 Negative Decimal
+  # 1.1.7.2 Negative Decimal
   | [symbol](#1021-dash-symbol) AND [def](#1170-decimal-form)
    → [time](#comp-time)
   
@@ -323,7 +327,7 @@ nomenclatures:
 
   # 1.2.0.1 Multi-Line string form
   | [symbol](#1012-double-quot-symbol)
-  | AND [set](#100-utf-8) AND
+  | AND [set](#000-utf-8) AND
   | [symbol](#1012-double-quot-symbol)
   → do it: "string example
             0123456789 [{()}]"
@@ -356,6 +360,10 @@ nomenclatures:
    →[error](#sintatic-rules)
    → [time](#comp-time)
    → diagnostic: String ["]/['] Prefix do not support others Prefix, only [f]/[F], [w]/[W], [dw]/[DW]
+  # 1.2.1.4 String Prefix Error
+   →[error](#sintatic-rules)
+   → [time](#comp-time)
+   → diagnostic: String ["]/['] Prefix do not support Space [ ]
 
 
 # 1.2.2 String Sufix
