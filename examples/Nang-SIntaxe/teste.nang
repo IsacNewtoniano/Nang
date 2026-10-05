@@ -1,0 +1,177 @@
+1.:
+
+imut u8: x, y = 10; 20
+ou
+imut u8 x = 10
+imut u8 y = 20
+
+imut u8: result = x * 2 + y
+
+print; result
+ou
+print(result)
+
+Fundamentais: '10', '20' -> Números
+               ':', '=', '*', '+', ';' -> Símbolos
+               imut -> Palavras Chaves Communs
+               u8 -> Palavras Chaves de Tipos
+               x, y -> Identificadores
+               '( ( x * 2 ) + y )' -> Expressão 
+2.:
+
+mut i32: 4.byte x = 42
+ou
+mut i32 x = 42
+
+if x > 100 {
+  x -= 100
+}
+else x > 50 {
+  x -= 50
+}
+else {
+  x += 10
+}
+
+Fundamentais: '42', '100', '50', '10' -> Números
+              ':', '.', '=', '>', '{', '-', '}', '+' -> Símbolos
+              mut, if, else -> Palavras Chaves Communs
+              i32 -> Palavra Chaves de Tipos
+              byte -> Palavra Chaves de Propriedades
+              x -> Identificador
+              'x > 100', 'x > 50' -> Expressão Relacional
+              byte de .4.byte -> Propriedade de Memória
+3.:
+
+u64 calculate
+ou
+u64: 8.byte calculate
+
+u64 function calculate; imut u64 x; imut u64 y; imut u64 multiplier {
+ou
+u64 function calculate; imut u64: x, y; imut u64 multiplier {
+ou
+u64 function calculate; imut u64: x, imut y; imut u64 multiplier {
+ou
+u64 function calculate; imut u64: x, u64 y; imut u64 multiplier {
+ou
+u64 function calculate; imut u64: x, y, multiplier {
+
+u64 function calculate; imut u64: x, y, multiplier {
+  mut u64 result = x * multiplier
+
+  result += y
+
+  ret result
+}
+
+imut u64 value = calculate; 10; 5; 3
+ou
+imut u64 value = calculate(10; 5; 3)
+
+Fundamentais: '10', '5', '3' -> Números
+               ';', ':', ',', '{', '=', '*', '+', '}', '(', ')' -> Símbolos
+               function, imut, mut, ret -> Palavras Chaves Communs
+               u64 -> Palavras Chaves de Tipos
+               x, y, multiplier, result, value -> Identificadores
+               'x * multiplier' -> Expressão
+               .byte de 8.byte -> Propriedade de Memória
+
+4./5.:
+mut u8 i = 0
+mut u32 sum = 0
+
+loop i < 100 {
+  sum += i
+  i += 1
+}
+
+Fundamentais: '0', '100' -> Números
+               '=', '<', '{', '+', '}' -> Símbolos
+               mut, loop ->  Palavras Chaves Communs
+               u8, u32 -> Palavras Chaves de Tipos
+               i, sum -> Identificadores
+               'i < 100' -> Expressão Relacional
+6.:
+
+imut [5]u8 numbers = [10, 20, 30, 40, 50]
+
+mut u16 total = 0
+
+loop u8 i = 0..4
+ou
+loop u8 i = 0..4 by 1
+ou
+loop u8 i = 4..0 by -1
+
+loop u8 i = 0..4 {
+  total += numbers[i]
+}
+
+Fundamentais: '5', '10', '20', '30', '40', '50', '0', '4', '1', '-1' -> Números
+               '[', ']', '=', '..', '{', '+', '}' -> Símbolos
+               imut, number, mut, loop -> Palavras Chaves Communs
+               u8, u16 -> Palavras Chaves de Tipos
+               numbers, total, i -> Identificadores
+               0..4 -> Range
+7.:
+
+mut u8 value = 42
+mut pointer u8: imut ptr = value.address \ ponteiro u8 mutável(pode modificar a variável referenciada), mas o ptr é imutável(não pode ser ponteiro de outro addr)
+
+ptr.acess = 100
+
+print; '<value>\n'
+
+Fundamentais: '42', '100' -> Números
+               '=', ':', '.', ';', "'", '<', '>', '\' -> Símbolos
+               mut, imut -> Palavras Chaves Communs
+               u8, pointer -> Palavras Chaves de Tipos
+               .address, .acess -> Propriedade de Memória/Tipo
+               value, ptr -> Identificadores
+8.:
+
+struct Point {
+  once u8 x
+  once u8 y
+}
+
+mut struct p = Point
+
+p.x = 10
+p.y = 20
+
+imut u8 distance = p.x + p.y
+
+versão compacta:
+imut struct p = Point {
+  .x = 10
+  .y = 20
+}
+
+Fundamentais: '10', '20' -> Números
+               '{', '}', '=', '.', '+' -> Símbolos
+               mut, imut -> Palavras Chaves Communs
+               struct, u8 -> Palavras Chaves de Tipos
+               .x, .y -> Propriedades de Memória/Tipo
+               Point, x, y, p, distance -> Identificadores
+9.:
+
+
+
+0  1  2  3  4  5
+-  -  -  -  -  -
+0  0  0  0  0  0 : 0
+0  0  0  0  0  0 : 1
+0  0  0  0  0  0 : 2
+0  0  0  0  0  0 : 3
+0  0  0  0  0  0 : 4
+0  0  0  0  0  0 : 5
+
+
+0/0 até 5/5 =
+              1/0, 2/0, 3/0, 4/0, 5/0, 5/1, 5/2, 5/3, 5/4, 5/5
+               1    2    3    4    5    6    7    8    9    10 passos
+              
+              1/0, 1/1, 2/1, 2/2, 3/2, 3/3, 4/3, 4/4, 5/4, 5/5
+               1    2    3    4    5    6    7    8    9    10 passos

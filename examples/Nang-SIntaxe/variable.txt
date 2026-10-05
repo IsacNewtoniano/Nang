@@ -1,0 +1,207 @@
+Default Types:
+  u4, i4, f4, u8, i8, f8,
+  u16, i16, f16, u32, i32, f32
+  u64, i64, f64, u80, i80, f80
+  u128, i128, f128
+
+
+EspecialTypes:
+  pointer (Specific pointer)
+  gnpointer = generic_pointer (pointer without Specific Type)
+  import (Specific Compile Pointer)
+
+ExtraTypes:
+  class (Specific Pointer)
+  struct (Specific Pointer)
+  record (Specific Pointer)
+  function (Specific Pointer)
+  label-scop (Specific Pointer)
+  label (Specific Pointer)
+
+simple AND Default Types:
+  Type = simple AND Default Types for example
+
+  Sintaxe:
+
+    ┌─ immutable/mutable
+    imut/mut Type Var = 3.58 ─> Value of Variable
+             |    └─ Name of Variable
+             └─ Type of Variable
+
+             ┌─ Logic Type
+    imut/mut Type: Size.byte Var = 1
+                   └─ Physical Space
+
+              ┌─ Size of Fixed-Array
+              |       ┌─ Use bit for Compact Elements (use multiples of 8)
+    imut/mut [35]Type: Size.byte/Size.bit Var = {0} ─> initialization value
+                                       └─ Elements or Initialization Value
+
+  Example(Code):
+
+    ┌─ mutable
+    mut f8 Var = 3.58 ─> Value of Variable
+        |  └─ Name of Variable
+        └─ Type of Variable
+
+         ┌─ Logic Type
+    imut u1: 1.byte Var = 1
+             └─ Physical Space
+
+         ┌─ Size of Fixed-Array
+         |         ┌─ Use bit for Compact Elements (use multiples of 8)
+    mut [5]u7: 7.bit Var = {0} ─> initialization value
+               |              └─ Elements or Initialization Value
+               └─ Save 32 bits
+
+  Example(Clear):
+    mut f8 Var = 3.58 ─> Value of Variable
+
+    imut u1: 1.byte Var = 1
+
+ExtraTypes:
+
+  Sintaxe:
+
+    ┌─ immutable/mutable
+    |                     ┌─ Name of Variable
+    imut/mut class: array Var = i8, 1000 ─> params
+              |     └─ Name of class
+              └─ Type of Variable
+
+    ┌─ immutable/mutable
+    |                    ┌─ Name of Variable
+    imut/mut struct: car Var = "Ferrari".utf_8, 1000 ─> values
+              |      └─ Name of struct
+              └─ Type of Variable
+
+    ┌─ immutable/mutable
+    |                        ┌─ Name of Variable
+    imut/mut record: OS_Data Var = 19, 23, 15, 5, 2026 ─> values
+              |      └─ Name of record
+              └─ Type of Variable
+
+    ┌─ immutable/mutable
+    |                 ┌─ Name of Variable
+    imut/mut function Var = print
+              |             └─ Name of function
+              └─ Type of Variable
+
+    ┌─ immutable/mutable
+    |                   ┌─ Name of Variable
+    imut/mut label_scop Var = vm
+              |               └─ Name of label_scop
+              └─ Type of Variable
+
+    ┌─ immutable/mutable
+    |                  ┌─ Name of Variable
+    imut/mut label: vm Var = {add, sub, div, mul} ─> name of labels
+              |     └─ Name of label_scop
+              └─ Type of Variable
+
+  Example(Code):
+
+    ┌─ mutable
+    |                ┌─ Name of Variable
+    mut class: set Var = i8, {94, 62, 12, 34, 100, 120, 9, -95} ─> params
+        |      └─ Name of class
+        └─ Type of Variable
+
+    ┌─ immutable
+    |                  ┌─ Name of Variable
+    imut struct: color Var = 255, 255, 255, 255 ─> values
+         |       └─ Name of struct
+         └─ Type of Variable
+
+    ┌─ mutable
+    |                        ┌─ Name of Variable
+    mut record: Magic_Name Var = 'Nang'.utf_8 ─> values
+        |       └─ Name of record
+        └─ Type of Variable
+
+    ┌─ immutable
+    |             ┌─ Name of Variable
+    imut function Var = sum_set
+              |         └─ Name of function
+              └─ Type of Variable
+
+    ┌─ mutable
+    |              ┌─ Name of Variable
+    mut label_scop Var = lexer
+         |               └─ Name of label_scop
+         └─ Type of Variable
+
+    ┌─ immutable
+    |                  ┌─ Name of Variable
+    imut label: lexer Var = {init_check, end_check} ─> name of labels
+              |     └─ Name of label_scop
+              └─ Type of Variable
+
+  Example(Clear):
+    mut class: set Var = i8, {94, 62, 12, 34, 100, 120, 9, -95} ─> params
+
+    imut struct: color Var = 255, 255, 255, 255 ─> values
+
+    imut function Var = sum_set
+
+    mut label_scop Var = lexer
+
+    imut label: lexer Var = {init_check, end_check} ─> name of labels
+
+EspecialTypes:
+    mut record: Magic_Name Var = 'Nang'.utf_8 ─> values
+
+  Sintaxe:
+
+    ┌─ immutable/mutable ┌─ Name of Pointer Variable
+    |                    |     ┌─ immutable/mutable addr access
+    imut/mut pointer: i8 Var = imut/mut; addr
+             |        └─ Type of pointer
+             └─ Type of Variable
+
+    ┌─ immutable/mutable ┌─ Name of Pointer Variable
+    |                    |     ┌─ immutable/mutable addr access
+    imut/mut gnpointer Var = imut/mut; addr
+             |
+             └─ Type of Variable
+
+    ┌─ immutable/mutable
+    |                      ┌─ Name of File Variable
+    imut/mut import: <std> io = .io
+              |      └─ Name of Global File
+              └─ Type of Variable
+
+  Example(Code):
+
+    ┌─ immutable      ┌─ Name of Pointer Variable
+    |                 |     ┌─ immutable/mutable addr acess
+    imut pointer: u98 Var = imut/mut; addr
+              |   └─ Type of pointer
+              └─ Type of Variable
+
+    ┌─ mutable    ┌─ Name of Pointer Variable
+    |             |     ┌─ mutable addr access
+    mut gnpointer Var = mut; addr
+             |
+             └─ Type of Variable
+
+    ┌─ comptime mutable
+    |                  ┌─ Name of File Variable
+    cmut import: "math" reduce = .reduce
+              | └─ Name of Local File
+              └─ Type of Variable
+
+    ┌─ immutable
+    |                ┌─ Name of File Variable
+    imut import: std io = .io
+              |  └─ Name of default File
+              └─ Type of Variable
+
+  Example(Clear):
+    imut pointer: u98 Var = imut/mut; addr
+
+    mut gnpointer Var = mut; addr
+
+    mut import: "math" reduce = .reduce
+
+    imut import: <std> io = .io
