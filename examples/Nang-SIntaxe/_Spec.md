@@ -23,11 +23,11 @@ limitations under the License.
 
 
 
-# How to Read This Specification
+# How To Read This Specification
  ## Document Notation
     []:
-      Square brackets are used to define the type of rule that will be referenced.
-    
+      Square brackets are used to define the type of rule to be referenced or the character from a set.
+
     (x.x.x.x.x):
       Parentheses are used to indicate the reference.
 
@@ -72,11 +72,12 @@ limitations under the License.
     Precedence:
       OR -> First
       AND -> Second
-    
+
     Example:
       '_' AND 0 OR 1
-       |      └────└─ Firt
-       └───────────── Second
+       |      └────┴─ Firt
+       |               |
+       └───────────────┴────── Second
       IS
       Choose 0 or 1.
 
@@ -105,5 +106,126 @@ limitations under the License.
       implications should be understood and the case carefully weighed
       before implementing any behavior described with this label.
 
-  ## To conclude
+  ## To Conclude
     For correct and proper reading, this does not interfere with the language's syntax or the compiler's actions.
+
+# Source File Format
+  .Nang source files must be encoded in UTF-8
+
+  MUST: UTF-8 encoding
+  MUST NOT: BOM(Byte Order Mark)
+
+  UTF-16 and UTF-32 are used internally only for conversions from UTF-8.
+
+# Accepted Character Set
+  The set is {`a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z,
+              A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z`}
+
+# Accepeted Digit Set
+  The set is {`0, 1, 2, 3, 4, 5, 6, 7, 8, 9`}
+
+# Accepted Symbol Set
+  The set is {
+    `_`
+    `.`
+    `,`
+    `'`
+    `"`
+    `+`
+    `-`
+    `*`
+    `/`
+    `%`
+    `<`
+    `=`
+    `>`
+    `|`
+    `!`
+    `&`
+    `^`
+    `~`
+    `\`
+    `@`
+    `#`
+    `;`
+    `:`
+    `?`
+    `[`
+    `]`
+    `{`
+    `}`
+    `(`
+    `)`
+  }
+
+# All Accepet UTF-8 Character
+  [set] AND [set] AND [set] AND the set in decimal code {
+    10,
+    32
+  }
+
+  ## binary number digit set
+    the set is {0, 1}
+
+  ## Decimal number digit set
+    the set is {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+  ## Hexadecimal number digit set
+    the set is {0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+                a, b, c, d, e, f, A, B, C, D, E, F}
+
+
+# 0.0
+  Binary Number
+
+  MUST: Use the set [set](#binary-number-digit-set)
+
+  Define the accepted syntax for binary number initialization: v0
+    [0](#binary-number-digit-set) AND [b](#accepted-character-set)
+    MUST:
+      0b
+    MUST NOT:
+      b0
+
+  Define the accepted syntax for binary number initialization: v1
+    [0](#binary-number-digit-set) AND [B](#accepted-character-set)
+    MUST:
+      0B
+    MUST NOT:
+      B0
+
+  Define the accepted syntax for the post-initialization of binary numbers: v0
+    [0](#binary-number-digit-set)
+    MUST:
+      0
+    MUST NOT:
+      0...1
+
+  Define the accepted syntax for the post-initialization of binary numbers: v1
+    [1](#binary-number-digit-set)
+    MUST:
+      1
+    MUST NOT:
+      0...1
+
+  Define the accepted syntax for the post-initialization of binary numbers: v2
+    [1](#binary-number-digit-set) AND [0](#binary-number-digit-set) OR [1](#binary-number-digit-set)
+    MUST:
+      10
+      11011
+    MUST NOT:
+      0...10
+      0...11011
+
+  Define the accepted syntax for the post-initialization of binary numbers: v3
+    [1](#binary-number-digit-set) AND [0](#binary-number-digit-set) OR [1](#binary-number-digit-set) OR [_](#accepted-symbol-set)
+    AND [0](#binary-number-digit-set) OR [1](#binary-number-digit-set)
+    MUST:
+      1_01
+      11_0_11
+    MUST NOT:
+      0...1_01
+      0...11_0_11
+    MUST NOT:
+      1_01_
+      11_0_11_
