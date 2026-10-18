@@ -43,3 +43,7 @@
 #define clzll(x) __builtin_clzll(x)
 
 #define offsetof(type, member) __builtin_offsetof(type, member)
+
+#define KB(x) ( (x) << 10)
+#define MB(x) ( (x) << 20)
+#define GB(x) ( (x) << 30)

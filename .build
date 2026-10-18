@@ -1,0 +1,7 @@
+Files:
+  code.nang
+  code_compiled.exe
+ARGS:
+  .O3
+  .REPORT
+  .NOWARNING
