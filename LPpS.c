@@ -23,3 +23,14 @@
 
 
 
+#include "Types.h"
+#include "Utils.h"
+
+#include "Structs.h"
+
+Arrays *LPS(char *File_Name) {
+  Pre_Lexer_A:
+  Pre_Lexer_B:
+  Pre_Lexer_C:
+// ....
+};

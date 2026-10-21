@@ -36,10 +36,10 @@
 int main(int ArgC, char **ArgV) {
   Arena *Alloc = Init_Arena(KB(32), KB(8));
   
-  wchar_t Buffer[10];
+  wchar_t Buffer[256];
 
   DWORD Size = GetCurrentDirectoryW(
-    10,
+    256,
     Buffer
   );
 
@@ -47,10 +47,14 @@ int main(int ArgC, char **ArgV) {
     printf("Error getting current directory: %lu\n", GetLastError());
     return 1;
   }
+  
+  for (u8 i = 0; i <= Size; i++){
+    putwchar(Buffer[i]);
+  }
   char *SourcePath = NULL;
 
   
-
+  printf("\n");
   for (int I = 0; I < ArgC; I++) {
     printf("ArgV[%u] = %s\n", I, ArgV[I]);
   }

@@ -68,6 +68,33 @@ typedef __attribute__((aligned(8))) struct {
 } CompilerFlags;
 
 typedef enum: u8 {
+  If_Key,
+  Else_Key,
+  Match_Key,
+  Case_Key,
+  Coringa_Key,
+  Function_Key,
+  Class_Key,
+  Struct_Key,
+  Record_Key,
+  Break_Key,
+  Continue_Key,
+  Return_Key,
+  Defer_Key,
+  Inline_Key,
+  FuncSpec_Key,
+  Variable_Key,
+} Special_Key;
+
+typedef enum: u8 {
+  Imut_Type,
+  mut_Type,
+  ReadOnly_Type,
+  Private_Type,
+  Public_Type,
+} VisibilityType;
+
+typedef enum: u8 {
   U8_Type,
   U16_Type,
   U32_Type,
@@ -135,19 +162,26 @@ typedef enum: u8 {
   Dot_Type,         //* .
 
   Function_Type, //* function call
+  Variable_Type, //* variable value
 } Expression_Type;
 
 typedef enum: u8 {
-  Dot_Precedence         = 0,
   Function_Precedence     = 0,
-  Bracket_Precedence     = 0,
-  Parenthesis_Precedence = 1,
+  Variable_Precedence     = 0,
+  Value_Precedence     = 0,
 
-  Add_Precedence    = 2,
+  Dot_Precedence         = 1,
+  Bracket_Precedence     = 1,
+
+  Parenthesis_Precedence = 2,
+
+  Add_Precedence    = 3,
   Sub_Precedence    = 3,
+
   Mul_Precedence    = 4,
   IntDiv_Precedence = 4,
   Div_Precedence    = 4,
+
   Mod_Precedence    = 5,
 
   Binary_And_Precedence = 6,
@@ -156,75 +190,91 @@ typedef enum: u8 {
   Binary_Not_Precedence = 6,
 
   Not_Precedence = 7,
-  And_Precedence = 7,
-  Or_Precedence  = 8,
-  Xor_Precedence = 8,
+  And_Precedence = 8,
+  Or_Precedence  = 9,
+  Xor_Precedence = 9,
 
-  LeftShift_Precedence             = 9,
-  RightShift_Precedence            = 9,
-  Arithmetic_RightShift_Precedence = 9,
-  Arithmetic_LeftShift_Precedence  = 9,
-  LeftRotate_Precedence            = 9,
-  RightRotate_Precedence           = 9,
+  LeftShift_Precedence             = 10,
+  RightShift_Precedence            = 10,
+  Arithmetic_RightShift_Precedence = 10,
+  Arithmetic_LeftShift_Precedence  = 10,
+  LeftRotate_Precedence            = 10,
+  RightRotate_Precedence           = 10,
 
-  Equal_Precedence        = 10,
-  NotEqual_Precedence     = 10,
-  Greater_Precedence      = 10,
-  GreaterEqual_Precedence = 10,
-  Less_Precedence         = 10,
-  LessEqual_Precedence    = 10,
+  Equal_Precedence        = 11,
+  NotEqual_Precedence     = 11,
+  Greater_Precedence      = 11,
+  GreaterEqual_Precedence = 11,
+  Less_Precedence         = 11,
+  LessEqual_Precedence    = 11,
 
-  EqualType_Precedence     = 10,
-  NotEqualType_Precedence  = 10,
+  EqualType_Precedence     = 12,
+  NotEqualType_Precedence  = 12,
 
-  Block_Precedence       = 11,
+  Block_Precedence       = 13,
 
 } Expression_Precedence; 
+
+typedef __attribute__((aligned(8))) struct {
+  Special_Key Key;
+  Id_Size Content;
+} Generic_Key;
+
+typedef __attribute__((aligned(8))) struct {
+  u32 Name_Id;
+  u32 File_Id;
+  
+  u32 Line_Initial;
+  u32 Line_Final;
+  
+  u32 Column_Initial;
+  u32 Column_Final;
+} Struct_Info;
+
+typedef __attribute__((aligned(8))) struct {
+  Type SubType;
+  Type Type;
+  
+  u64 Slice_Size;
+  u64 Bit_Size;
+} Type_Information;
 
 typedef __attribute__((aligned(8))) struct Expression {
   Expression_Type Type;
   Expression_Precedence Precedence;
 
-  u32 File_Id;
-  u32 Line_Initial;
-  u32 Line_Final;
-  u32 Column_Initial;
-  u32 Column_Final;
+  Struct_Info Info;
+  u32 Extra_Id; //* For function, value AND variable types
 
-  u32 Name_Id;
-
-  struct Expression *Left;
-  struct Expression *Right;
+  Id_Size *Expression_Ids;
+  u32 Expression_Count;
 } Expression;
 
 typedef __attribute__((aligned(8))) struct {
-  Type SubType;
-  Type Type;
+  Struct_Info Info;
 
-  u64 Slice_Size;
-  u64 Bit_Size;
-} Type_Information;
-
-typedef __attribute__((aligned(8))) struct {
-  u32 Name_Id;
-
-  u32 File_Id;
-  u32 Line_Initial;
-  u32 Line_Final;
-  u32 Column_Initial;
-  u32 Column_Final;
-
-  Type_Information *Type;
-  Expression *Value;
+  Type_Information Type;
+  Id_Size *Expression_Id_Value;
 } Variable;
 
 typedef __attribute__((aligned(8))) struct {
-  
+  Struct_Info Info;
+
+  Type_Information Type;
 } Function_Parameter;
 
 typedef __attribute__((aligned(8))) struct Function {
-  Function_Parameter **Parameters;
+  Struct_Info *Modification_Info;
+  u32 Modification_Count;
+
+  Struct_Info Name_Info;
+  Struct_Info Function_Info;
+
+  Function_Parameter *Parameters;
   u32 Parameter_Count;
+
+  Generic_Key *Keys;
+  u32 Keys_Count;
 } Function;
 
 typedef __attribute__((aligned(8))) struct Generic_Array {
@@ -233,6 +283,14 @@ typedef __attribute__((aligned(8))) struct Generic_Array {
   u64 Capacity;
 } Generic_Array;
 
-typedef __attribute__((aligned(8))) struct Arrays {
+typedef __attribute__((aligned(8))) struct Import {
+
+} Import;
+
+typedef __attribute__((aligned(8))) struct File_Struct{
+
+} File_Struct;
+
+typedef __attribute__((aligned(8))) struct Array {
 
 } Arrays;

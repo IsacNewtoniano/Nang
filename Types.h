@@ -43,6 +43,9 @@ typedef u8 *byte_pt;
 typedef void *generic_pt;
 typedef void non_return;
 
+typedef u32 Id_Size;
+typedef u64 UId_Size;
+
 typedef enum : signed char{
   upper = 1,
   standard = 0,
@@ -54,6 +57,12 @@ typedef enum : signed char{
   none = 0,
   failed = -1
 } err;
+
+typedef enum : signed char{
+  already_exists = 1,
+  new_node = 0,
+  failed_to_insert = -1
+} insert_result;
 
 #define KiB(n) ((u64)(n) << 10)
 #define MiB(n) ((u64)(n) << 20)
