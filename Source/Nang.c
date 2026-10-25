@@ -25,10 +25,10 @@
 
 
 
-#include "Mem.c"
+#include "Librarys/Mem.c"
 
-#include "Types.h"
-#include "Utils.h"
+#include "Handlers/Types.h"
+#include "Handlers/Utils.h"
 
 #include <stdio.h>
 #include <windows.h>

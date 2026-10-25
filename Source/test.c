@@ -1,8 +1,8 @@
-#include "Timer.c"
-#include "Types.h"
-#include "Mem.c"
-#include "Trie.c"
-#include "Utils.h"
+#include "Handlers/Types.h"
+#include "Librarys/Timer.c"
+#include "Librarys/Mem.c"
+#include "Librarys/Trie.c"
+#include "Handlers/Utils.h"
 
 #include <windows.h>
 #include <stdio.h>

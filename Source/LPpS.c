@@ -23,10 +23,10 @@
 
 
 
-#include "Types.h"
-#include "Utils.h"
+#include "Handlers/Types.h"
+#include "Handlers/Utils.h"
 
-#include "Structs.h"
+#include "Handlers/Structs.h"
 
 Arrays *LPS(char *File_Name) {
   Pre_Lexer_A:

@@ -25,8 +25,7 @@
 
 #pragma once
 
-#include "Types.h"
-#include <stdio.h>
+#include "../Handlers/Types.h"
 
 
 //* Cycles to ns

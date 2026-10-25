@@ -27,8 +27,8 @@
 
 #include <windows.h>
 
-#include "Types.h"
-#include "Utils.h"
+#include "../Handlers/Types.h"
+#include "../Handlers/Utils.h"
 
 typedef __attribute__((aligned(8))) struct {
   byte_pt End;
