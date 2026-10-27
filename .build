@@ -5,3 +5,9 @@ ARGS:
   .O3
   .REPORT
   .NOWARNING
+
+
+/*
+nasm -f win64 f.asm -o f.obj
+lld-link f.obj "C:\Program Files (x86)\Windows Kits\10\Lib\10.0.28000.0\um\x64\kernel32.lib" /entry:main /subsystem:console /out:f.exe
+*/

@@ -1,0 +1,37 @@
+Assembly path
+  |
+  └┬─ ISA Name path:
+   |
+   ├── Assembler
+   ├── Assembly
+   ├── Assembly constants
+   ├── Assembly optimizations
+   └── specific Assembly:
+         |
+         ├─┬─ Ryzen 3 2200G ...
+         | |
+         | ├── asm constants
+         | └── opt constants
+         | 
+         └─┬─ Xeon E5 2680 V4...
+           |
+           ├── asm constants
+           └── opt constants
+
+Librarys path
+  |
+  ├─┬─ Math_All
+  | ├── File0.nang
+  | └── File1.nang
+  └─┬─ Ultra_Graphics
+    ├── File0.nang
+    └── File1.nang
+
+STD path
+  |
+  ├─┬─ Types
+  | ├── File0.nang
+  | └── File1.nang
+  └─┬─ File
+    ├── File0.nang
+    └── File1.nang
