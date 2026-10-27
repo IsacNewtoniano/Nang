@@ -1,2 +1,2 @@
 # Nang
-A lang focused on the NANG philosophy
+A lang focused on the NASTRA philosophy
