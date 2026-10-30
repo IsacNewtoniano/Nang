@@ -23,49 +23,13 @@
 
 
 
+#pragma once
+
 #include "Types.h"
 
 typedef __attribute__((aligned(8))) struct {
-  /*
-  * Optimization flags Level for the compiler.
-  * 0 = No         optimization AND Flash Compile
-  * 1 = Basic      optimization AND Flash Compile
-  * 2 = Aggressive optimization AND Slow  Compile
-  * 3 = Maximum    optimization AND Slow  Compile
-  */
-
-  // !Optimization flags Level for the compiler.
-  unsigned Opt0: 1;
-  unsigned Opt1: 1;
-  unsigned Opt2: 1;
-  unsigned Opt3: 1;
-
-  /*
-  * Reporting flags for the compiler.
-  * TerminalReport = Make Report File WITH all reports, warnings, errors, and suggestions.
-  * Report = Make Report File WITH all reports, warnings, errors, and suggestions.
-  * Warning = Make Report File WITH all warnings.
-  * Error = Make Report File WITH all errors.
-  * Suggestion = Make Report File WITH all suggestions.
-
-  * NonReport = Ignore All reports, warnings, errors, and suggestions.
-  * NonWarning = Ignore All warnings.
-  * NonError = Ignore All errors.
-    * NonSuggestion = Ignore All suggestions.
-  */
-
-  // !Reporting flags for the compiler.
-  unsigned TerminalReport: 1;
-  unsigned Report: 1;
-  unsigned Warning: 1;
-  unsigned Error: 1;
-  unsigned Suggestion: 1;
-  unsigned NonReport: 1;
-  unsigned NonWarning: 1;
-  unsigned NonError: 1;
-  unsigned NonSuggestion: 1;
-
-} CompilerFlags;
+  u8 *String;
+} URL_String;
 
 typedef enum: u8 {
   If_Key,

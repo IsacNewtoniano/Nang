@@ -26,21 +26,31 @@
 
 
 #include "Librarys/Mem.c"
+#include "Librarys/Terminal.c"
 
 #include "Handlers/Types.h"
 #include "Handlers/Utils.h"
 
+#include "Handlers/Main.h"
+#include "Handlers/Structs.h"
+
 #include <stdio.h>
 #include <windows.h>
 
+#define Nang_Directory_Buffer_Size 256
+
 int main(int ArgC, char **ArgV) {
+  system("cls");
+  SetConsoleOutputCP(CP_UTF8);
+  SetConsoleCP(CP_UTF8);
+
   Arena *Alloc = Init_Arena(KB(32), KB(8));
   
-  wchar_t Buffer[256];
+  wchar_t *Nang_Directory = (wchar_t *)Arena_Alloc(Alloc, Nang_Directory_Buffer_Size);
 
   DWORD Size = GetCurrentDirectoryW(
-    256,
-    Buffer
+    Nang_Directory_Buffer_Size,
+    Nang_Directory
   );
 
   if (Size == 0) {
@@ -49,12 +59,15 @@ int main(int ArgC, char **ArgV) {
   }
   
   for (u8 i = 0; i <= Size; i++){
-    putwchar(Buffer[i]);
+    putwchar(Nang_Directory[i]);
   }
-  char *SourcePath = NULL;
 
-  
-  printf("\n");
+  progress(50, 20);
+
+  if (ArgC < 2){
+    printf("");
+  }
+  printf("\n\n");
   for (int I = 0; I < ArgC; I++) {
     printf("ArgV[%u] = %s\n", I, ArgV[I]);
   }
@@ -62,5 +75,5 @@ int main(int ArgC, char **ArgV) {
   return 0;
 }
 
-// Current Compile C args: clang -O3 -o Nang.exe Nang.c
-// Current Compile Nang args: ./build: nang .build
+// Current Compile C args: clang -O3 -o Nang.exe Source/Nang.c
+// Current Compile Nang args: ./nang .build
